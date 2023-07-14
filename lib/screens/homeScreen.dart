@@ -1,4 +1,5 @@
 import 'package:apploja/tabs/home_tab.dart';
+import 'package:apploja/tabs/produtos_tab.dart';
 import 'package:apploja/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,15 @@ class HomeScreen extends StatelessWidget {
         Scaffold(
           body: const HomeTab(),
           drawer: CustomDrawer(pageController),
+        ),
+        Scaffold(
+          appBar: AppBar(
+            title: const Text("Animes"),
+            centerTitle: true,
+            backgroundColor: Color.fromARGB(255, 211, 118, 130),
+          ),
+          drawer: CustomDrawer(pageController),
+          body: const ProdutosTab(),
         )
       ],
     );
