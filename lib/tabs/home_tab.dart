@@ -56,18 +56,13 @@ class HomeTab extends StatelessWidget {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate: SliverQuiltedGridDelegate(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 1,
-                        crossAxisSpacing: 1,
-                        repeatPattern: QuiltedGridRepeatPattern.inverted,
-                        pattern: const [
-                          QuiltedGridTile(1, 2),
-                          QuiltedGridTile(2, 2),
-                          QuiltedGridTile(2, 1),
-                          QuiltedGridTile(1, 1),
-                          QuiltedGridTile(1, 1),
-                        ],
-                      ),
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 1,
+                          crossAxisSpacing: 1,
+                          repeatPattern: QuiltedGridRepeatPattern.inverted,
+                          pattern: snapshot.data!.docs.map((e) {
+                            return QuiltedGridTile(e['x'], e['y']);
+                          }).toList()),
                       childrenDelegate: SliverChildBuilderDelegate(
                         (context, index) => FadeInImage.memoryNetwork(
                           placeholder: kTransparentImage,

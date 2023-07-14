@@ -1,4 +1,5 @@
 import 'package:apploja/tabs/home_tab.dart';
+import 'package:apploja/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,7 +11,12 @@ class HomeScreen extends StatelessWidget {
     return PageView(
       controller: pageController,
       physics: const NeverScrollableScrollPhysics(),
-      children: const <Widget>[HomeTab()],
+      children: <Widget>[
+        Scaffold(
+          body: const HomeTab(),
+          drawer: CustomDrawer(pageController),
+        )
+      ],
     );
   }
 }
