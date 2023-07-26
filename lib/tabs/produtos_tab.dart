@@ -12,16 +12,19 @@ class ProdutosTab extends StatelessWidget {
     return FutureBuilder<QuerySnapshot>(
       future: FirebaseFirestore.instance.collection('produtos').get(),
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
+        if (!snapshot.hasData) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
-          return ListView(
-            children: snapshot.data!.docs.map((doc) {
-              return CategoryTile(doc);
-            }).toList(),
-          );
+          var devidedTiles = ListTile.divideTiles(
+                  tiles: snapshot.data!.docs.map((e) {
+                    return CategoryTile(e);
+                  }).toList(),
+                  color: Colors.grey[500])
+              .toList();
+
+          return ListView(children: devidedTiles);
         }
       },
     );

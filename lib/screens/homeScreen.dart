@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:apploja/tabs/home_tab.dart';
 import 'package:apploja/tabs/produtos_tab.dart';
 import 'package:apploja/widgets/custom_drawer.dart';
@@ -19,10 +21,10 @@ class HomeScreen extends StatelessWidget {
         ),
         Scaffold(
           appBar: AppBar(
-            title: const Text("Animes"),
-            centerTitle: true,
-            backgroundColor: Color.fromARGB(255, 211, 118, 130),
-          ),
+              title: const Text("Animes"),
+              centerTitle: true,
+              backgroundColor: // const Color.fromARGB(255, 211, 118, 130),
+                  Colors.purple),
           drawer: CustomDrawer(pageController),
           body: const ProdutosTab(),
         )
