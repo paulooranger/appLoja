@@ -17,14 +17,16 @@ class ProdutosTab extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else {
-          var devidedTiles = ListTile.divideTiles(
+          var dividedTiles = ListTile.divideTiles(
                   tiles: snapshot.data!.docs.map((e) {
                     return CategoryTile(e);
                   }).toList(),
                   color: Colors.grey[500])
               .toList();
 
-          return ListView(children: devidedTiles);
+          return ListView(
+            children: dividedTiles,
+          );
         }
       },
     );
