@@ -14,7 +14,7 @@ class ProductData {
 
   ProductData.fromDocument(DocumentSnapshot snapshot) {
     //possivel causador do erro
-    id = snapshot.get('documentID');
+    id = snapshot.id;
     title = snapshot.get('title');
     descricao = snapshot.get('descricao');
     preco = snapshot.get('preco') + 0.0;

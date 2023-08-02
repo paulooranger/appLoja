@@ -1,3 +1,5 @@
+import 'package:apploja/datas/produto_data.dart';
+import 'package:apploja/tiles/product_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -28,8 +30,9 @@ class CategoryScreen extends StatelessWidget {
         body: FutureBuilder<QuerySnapshot>(
             future: FirebaseFirestore.instance
                 .collection('produtos')
-                //erro na linha abaixo
-                .get(snapshot.documentID),
+                .doc(snapshot.id)
+                .collection('itens')
+                .get(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return const Center(
@@ -37,12 +40,29 @@ class CategoryScreen extends StatelessWidget {
                 );
               } else {
                 return TabBarView(children: [
-                  Container(
-                    color: Colors.amber,
+                  GridView.builder(
+                    padding: const EdgeInsets.all(4),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 4,
+                            crossAxisSpacing: 4,
+                            childAspectRatio: 0.65),
+                    itemCount: snapshot.data?.docs.length,
+                    itemBuilder: (context, index) {
+                      return ProductTile('grid',
+                          ProductData.fromDocument(snapshot.data!.docs[index]));
+                    },
                   ),
-                  Container(
-                    color: Colors.red,
-                  )
+                  ListView.builder(
+                      padding: const EdgeInsets.all(4),
+                      itemCount: snapshot.data?.docs.length,
+                      itemBuilder: (context, index) {
+                        return ProductTile(
+                            'list',
+                            ProductData.fromDocument(
+                                snapshot.data!.docs[index]));
+                      })
                 ]);
               }
             }),

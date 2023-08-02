@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:apploja/tiles/drawer_tile.dart';
 
@@ -57,7 +58,9 @@ class CustomDrawer extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                             onTap: () {
-                              print("ok");
+                              if (kDebugMode) {
+                                print("ok");
+                              }
                             },
                           ),
                         ],
