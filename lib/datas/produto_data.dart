@@ -13,7 +13,6 @@ class ProductData {
   late List tamanho;
 
   ProductData.fromDocument(DocumentSnapshot snapshot) {
-    //possivel causador do erro
     id = snapshot.id;
     title = snapshot.get('title');
     descricao = snapshot.get('descricao');
