@@ -39,32 +39,38 @@ class CategoryScreen extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else {
-                return TabBarView(children: [
-                  GridView.builder(
-                    padding: const EdgeInsets.all(4),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 4,
-                            crossAxisSpacing: 4,
-                            childAspectRatio: 0.65),
-                    itemCount: snapshot.data?.docs.length,
-                    itemBuilder: (context, index) {
-                      return ProductTile('grid',
-                          ProductData.fromDocument(snapshot.data!.docs[index]));
-                    },
-                  ),
-                  ListView.builder(
-                      padding: const EdgeInsets.all(4),
-                      /*erro linha abaixo*/
-                      itemCount: snapshot.data?.docs.length,
-                      itemBuilder: (context, index) {
-                        return ProductTile(
-                          'list',
-                          ProductData.fromDocument(snapshot.data!.docs[index]),
-                        );
-                      })
-                ]);
+                return TabBarView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      GridView.builder(
+                        padding: const EdgeInsets.all(4),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 4,
+                                crossAxisSpacing: 4,
+                                childAspectRatio: 0.65),
+                        itemCount: snapshot.data?.docs.length,
+                        itemBuilder: (context, index) {
+                          return ProductTile(
+                            'grid',
+                            //erro ocorendo na linha abaixo
+                            ProductData.fromDocument(snapshot.data?.docs[index]
+                                as DocumentSnapshot<Object?>),
+                          );
+                        },
+                      ),
+                      ListView.builder(
+                          padding: const EdgeInsets.all(4),
+                          itemCount: snapshot.data?.docs.length,
+                          itemBuilder: (context, index) {
+                            return ProductTile(
+                              'list',
+                              ProductData.fromDocument(snapshot.data
+                                  ?.docs[index] as DocumentSnapshot<Object?>),
+                            );
+                          })
+                    ]);
               }
             }),
       ),
