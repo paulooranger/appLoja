@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:apploja/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:apploja/tiles/drawer_tile.dart';
 
@@ -11,8 +11,8 @@ class CustomDrawer extends StatelessWidget {
     Widget buildDrawerBack() => Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(colors: [
-              Color.fromARGB(255, 203, 236, 241),
-              Colors.white,
+              Color.fromARGB(255, 196, 197, 197),
+              Color.fromARGB(255, 255, 255, 255),
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
           ),
         );
@@ -33,7 +33,7 @@ class CustomDrawer extends StatelessWidget {
                       top: 8,
                       left: 0,
                       child: Text(
-                        "Flutter Dev \nAnime's",
+                        "Flutter Dev \nOutFit",
                         style: TextStyle(
                             fontSize: 34, fontWeight: FontWeight.bold),
                       ),
@@ -50,17 +50,16 @@ class CustomDrawer extends StatelessWidget {
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           GestureDetector(
-                            child: Text(
+                            child: const Text(
                               "Entre ou cadastre-se >",
                               style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
+                                  color: Colors.blue,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
                             onTap: () {
-                              if (kDebugMode) {
-                                print("ok");
-                              }
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
                             },
                           ),
                         ],

@@ -9,7 +9,7 @@ class ProductData {
 
   late double preco;
 
-  late List images;
+  late List imagens;
   late List tamanho;
 
   ProductData.fromDocument(DocumentSnapshot snapshot) {
@@ -17,7 +17,7 @@ class ProductData {
     title = snapshot.get('title');
     descricao = snapshot.get('descricao');
     preco = snapshot.get('preco') + 0.0;
-    images = snapshot.get('images');
+    imagens = snapshot.get('imagens');
     tamanho = snapshot.get('tamanho');
   }
 }

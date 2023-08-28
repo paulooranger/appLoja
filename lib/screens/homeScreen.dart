@@ -21,10 +21,11 @@ class HomeScreen extends StatelessWidget {
         ),
         Scaffold(
           appBar: AppBar(
-              title: const Text("Animes"),
-              centerTitle: true,
-              backgroundColor: // const Color.fromARGB(255, 211, 118, 130),
-                  Colors.purple),
+            title: const Text("Produtos"),
+            backgroundColor: Theme.of(context).primaryColor,
+            centerTitle: true,
+            //backgroundColor: const Color.fromARGB(255, 211, 118, 130),
+          ),
           drawer: CustomDrawer(pageController),
           body: const ProdutosTab(),
         )

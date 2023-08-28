@@ -13,6 +13,7 @@ class CategoryScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(snapshot.get('title')),
+          backgroundColor: Theme.of(context).primaryColor,
           centerTitle: true,
           bottom: const TabBar(
             physics: NeverScrollableScrollPhysics(),
@@ -40,37 +41,38 @@ class CategoryScreen extends StatelessWidget {
                 );
               } else {
                 return TabBarView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      GridView.builder(
-                        padding: const EdgeInsets.all(4),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                mainAxisSpacing: 4,
-                                crossAxisSpacing: 4,
-                                childAspectRatio: 0.65),
-                        itemCount: snapshot.data?.docs.length,
-                        itemBuilder: (context, index) {
-                          return ProductTile(
-                            'grid',
-                            //erro ocorendo na linha abaixo
-                            ProductData.fromDocument(snapshot.data?.docs[index]
-                                as DocumentSnapshot<Object?>),
-                          );
-                        },
-                      ),
-                      ListView.builder(
-                          padding: const EdgeInsets.all(4),
-                          itemCount: snapshot.data?.docs.length,
-                          itemBuilder: (context, index) {
-                            return ProductTile(
-                              'list',
-                              ProductData.fromDocument(snapshot.data
-                                  ?.docs[index] as DocumentSnapshot<Object?>),
-                            );
-                          })
-                    ]);
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    GridView.builder(
+                      padding: const EdgeInsets.all(4),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 4,
+                              crossAxisSpacing: 4,
+                              childAspectRatio: 0.65),
+                      itemCount: snapshot.data?.docs.length,
+                      itemBuilder: (context, index) {
+                        return ProductTile(
+                          'grid',
+
+                          //erro ocorendo na linha abaixo
+                          ProductData.fromDocument(snapshot.data!.docs[index]),
+                        );
+                      },
+                    ),
+                    ListView.builder(
+                      padding: const EdgeInsets.all(4),
+                      itemCount: snapshot.data?.docs.length,
+                      itemBuilder: (context, index) {
+                        return ProductTile(
+                          'list',
+                          ProductData.fromDocument(snapshot.data!.docs[index]),
+                        );
+                      },
+                    ),
+                  ],
+                );
               }
             }),
       ),
